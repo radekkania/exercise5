@@ -57,7 +57,7 @@ public class TradeDao {
     	        return statement;
     	    	}
     	    },keyHolder); 
-    
+    	
     	return keyHolder.getKey().intValue();   
     }
     
@@ -70,10 +70,8 @@ public class TradeDao {
     public Optional<Trade> extractTrade(int id) {
     	Trade trade = jdbcTemplate.queryForObject(SELECT_BY_ID, new Object[] {id}, 
     			(rs, rowNum) -> {
-    				Trade t = new Trade();
-    				t.setAmount(rs.getDouble("amount"));
-    				t.setAsset(rs.getString("asset"));
-    				//t.setDate(date);
+    				Trade t = null;
+    				t = new Trade(id, rs.getString(2), rs.getDouble(3), rs.getDate(4));
     				return t;
     			});
     	
