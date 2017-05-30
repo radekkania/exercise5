@@ -48,16 +48,17 @@ public class TradeDao {
     	
     	KeyHolder keyHolder = new GeneratedKeyHolder();
     	jdbcTemplate.update(new PreparedStatementCreator() {
+    		@Override
     	    public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
     	        PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     	        statement.setString(1, trade.getAsset());
     	        statement.setDouble(2, trade.getAmount());
-    	        statement.setDate(3, (java.sql.Date) trade.getDate());
+    	        statement.setDate(3, new java.sql.Date(trade.getDate().getTime()));
     	        return statement;
     	    	}
-    	    }); 
-    	
-    	return keyHolder.getKey().intValue();     
+    	    },keyHolder); 
+    
+    	return keyHolder.getKey().intValue();   
     }
     
     /**
