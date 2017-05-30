@@ -1,3 +1,5 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,8 @@ import java.util.Optional;
 @ContextConfiguration("/spring-context.xml")
 @RunWith(value = SpringRunner.class)
 public class TradeDaoTest {
+	
+	Logger logger = LogManager.getLogger(TradeDaoTest.class);
 
     @Autowired
     TradeDao tradeDao;
@@ -64,6 +68,7 @@ public class TradeDaoTest {
 
         // then
         Assert.assertTrue(trade.isPresent());
+        logger.info(trade.get().toString());
         Assert.assertEquals(expectedTrade, trade.get());
     }
 

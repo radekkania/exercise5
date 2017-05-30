@@ -2,6 +2,10 @@ package wdsr.exercise5.model;
 
 import java.util.Date;
 
+/**
+ * @author Radek
+ *
+ */
 public class Trade {
 
     private Integer id;
@@ -19,7 +23,11 @@ public class Trade {
         this.date = date;
     }
 
-    public Integer getId() {
+    public Trade() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -73,4 +81,10 @@ public class Trade {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
+
+	@Override
+	public String toString() {
+		return "Trade [id=" + id + ", asset=" + asset + ", amount=" + amount + ", date=" + date + "]";
+	}
+    
 }
